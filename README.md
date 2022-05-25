@@ -18,4 +18,13 @@ rails db:create
 ```bash
 docker-compose up -d --build
 ```
-###
+### react
+```bash
+docker-compose run front bas
+```
+
+```Typescript
+yarn create react-app --template typescript
+cd react-app
+yarn start
+```
