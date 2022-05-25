@@ -14,4 +14,8 @@ docker-compose run api bash
 rails new . -f -d mysql --api
 rails db:create
 ```
+
+```bash
+docker-compose up -d --build
+```
 ###
