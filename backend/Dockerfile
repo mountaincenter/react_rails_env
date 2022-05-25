@@ -1,7 +1,7 @@
 FROM ruby:3.1.2
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libpq-dev nodejs && \
+    apt-get install -y build-essential libpq-dev nodejs npm && \
     npm uninstall yarn -g && \
     npm install yarn -g yarn && \
     rm -rf /usr/local/bundle/cache/*
