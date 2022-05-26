@@ -25,6 +25,4 @@ docker-compose run front bas
 
 ```Typescript
 yarn create react-app --template typescript
-cd react-app
-yarn start
 ```
