@@ -7,11 +7,11 @@ Rails.application.routes.draw do
       resources :chat_rooms, only: %i[index show]
       resources :messages, only: %i[create]
       resources :users, only: %i[index show update]
-      mount_devise_token_auth_for 'User', at: 'auth', controller: {
+      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'api/v1/auth/registrations'
       }
       namespace :auth do
-        resources :session, only: %i[index]
+        resources :sessions, only: %i[index]
       end
     end
   end

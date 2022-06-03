@@ -1,9 +1,9 @@
 import client from "./client"
 import Cookies from "js-cookie"
 
-import { SignUpData, SignInData } from "../../interfaces/index"
+import { SignUpFormData, SignInData } from "../../interfaces/index"
 
-export const signUp = (data: SignUpData) => {
+export const signUp = (data: SignUpFormData) => {
   return client.post("auth", data)
 }
 

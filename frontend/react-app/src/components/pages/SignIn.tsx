@@ -49,7 +49,7 @@ const SignIn: React.FC = () => {
         setIsSignedIn(true)
         setCurrentUser(res.data.data)
 
-        navigate("/", { replace: true })
+        navigate("/home", { replace: true })
 
         console.log("Signed in successfully!")
       } else {
@@ -70,40 +70,41 @@ const SignIn: React.FC = () => {
               variant="outlined"
               required
               fullWidth
-              label="Email"
+              label="メールアドレス"
               value={email}
               margin="dense"
-              onChange={event => setEmail(event.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
               required
               fullWidth
-              label="Password"
+              label="パスワード"
               type="password"
               placeholder="At least 6 characters"
               value={password}
               margin="dense"
               autoComplete="current-password"
-              onChange={event => setPassword(event.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
               variant="contained"
               size="large"
               fullWidth
-              disabled={!email || !password ? true : false} // 空欄があった場合はボタンを押せないように
+              disabled={!email || !password ? true : false}
               sx={{ t: 2, flexGrow: 1, textTransform: "none" }}
               onClick={handleSubmit}
             >
-              Submit
+              送信
             </Button>
             <Box textAlign="center" sx={{ marginTop: "2rem" }}>
               <Typography variant="body2">
-                Don't have an account? &nbsp;
+                まだアカウントをお持ちでない方は &nbsp;
                 <StyledLink to="/signup" >
-                  Sign Up now!
+                  こちら
                 </StyledLink>
+                から作成してください。
               </Typography>
             </Box>
           </CardContent>
@@ -113,7 +114,7 @@ const SignIn: React.FC = () => {
         open={alertMessageOpen}
         setOpen={setAlertMessageOpen}
         severity="error"
-        message="Invalid email or password"
+        message="メールアドレスかパスワードが間違っています"
       />
     </>
   )

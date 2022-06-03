@@ -1,9 +1,12 @@
 import React, { useState, useEffect, createContext, Children } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import CommomLayout from "./components/layouts/CommonLayout"
-import Home from "components/pages/Home";
-import SignIn from "components/pages/SignIn";
-import SignUp from "components/pages/SignUp";
+import Home from "components/pages/Home"
+import ChatRooms from "components/pages/ChatRooms"
+import ChatRoom from "components/pages/ChatRoom"
+import Users from "components/pages/Users"
+import SignIn from "components/pages/SignIn"
+import SignUp from "components/pages/SignUp"
 
 import { getCurrentUser } from "lib/api/auth"
 import { User } from "interfaces/index"
@@ -61,7 +64,10 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/" element={<Private children={<Home />}/>}></Route>
+            <Route path="/home" element={<Private children={<Home />}/>}></Route>
+            <Route path="/users" element={<Private children={<Users />}/>}></Route>
+            <Route path="/caht_rooms" element={<Private children={<ChatRooms />}/>}></Route>
+            <Route path="/cahtroom/:id" element={<Private children={<ChatRoom />}/>}></Route>
           </Routes>
         </CommomLayout>
       </AuthContext.Provider>

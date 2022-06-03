@@ -10,11 +10,13 @@ import {
 } from "@mui/material"
 
 import MenuIcon from '@mui/icons-material/Menu';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PersonIcon from '@mui/icons-material/Person';
+import SearchIcon from '@mui/icons-material/Search';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
 import { signOut } from "lib/api/auth"
-
 import { AuthContext }  from "App"
-
 
 const Header: React.FC = () => {
   const { loading, isSignedIn, setIsSignedIn } = useContext(AuthContext)
@@ -23,6 +25,7 @@ const Header: React.FC = () => {
   const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
       const res = await signOut()
+
       if (res.data.success === true) {
         Cookies.remove("_access_token")
         Cookies.remove("_client")
@@ -30,45 +33,60 @@ const Header: React.FC = () => {
 
         setIsSignedIn(false)
         navigate("/signin")
-        console.log("Succeeded in sign out")
+        console.log("Successed in sign out")
       } else {
         console.log("Failed in sign out")
       }
-    } catch (err) {
+    } catch(err) {
       console.log(err)
     }
   }
   const AuthButtons = () => {
-    if(!loading) {
-      if(isSignedIn) {
+    if (!loading) {
+      if (isSignedIn) {
         return (
-          <Button
-            sx={{textDecoration: "none"}}
-            color="inherit"
-            onClick={handleSignOut}
-          >
-            Sign out
-          </Button>
+          <>
+            <IconButton
+              component={Link}
+              to="/users"
+              edge="start"
+              sx={{ r: 2 }}
+              color="inherit"
+            >
+              <SearchIcon />
+            </IconButton>
+            <IconButton
+              component={Link}
+              to="/chat_rooms"
+              edge="start"
+              sx={{ r: 2 }}
+              color="inherit"
+            >
+              <ChatBubbleIcon />
+            </IconButton>
+            <IconButton
+              component={Link}
+              to="/home"
+              edge="start"
+              sx={{ r: 2 }}
+              color="inherit"
+            >
+              <PersonIcon />
+            </IconButton>
+          </>
         )
       } else {
         return (
           <>
-            <Button
-              sx= {{ textDecoration: "none"}}
+            <IconButton
               component={Link}
               to="/signin"
+              edge="start"
+              sx={{ r: 2 }}
               color="inherit"
             >
-              Sign In
-            </Button>
-            <Button
-              sx= {{ textDecoration: "none"}}
-              component={Link}
-              to="/signup"
-              color="inherit"
-            >
-              Sign Up
-            </Button>
+              <ExitToAppIcon />
+            </IconButton>
           </>
         )
       }
@@ -76,25 +94,17 @@ const Header: React.FC = () => {
       return <></>
     }
   }
-
   return (
     <>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            sx = {{ r: 2 }}
-            edge="start"
-            color="inherit"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             component={Link}
-            to="/"
+            to="/users"
             variant="h6"
             sx={{ flexGrow: 1, textDecoration: "none", color: "inherit"}}
           >
-            Sample
+            sample
           </Typography>
           <AuthButtons />
         </Toolbar>
